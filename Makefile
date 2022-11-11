@@ -7,4 +7,4 @@ migrate:
 	python backend/manage.py migrate
 
 run:
-	yarn
+	yarn --cwd front start & python backend/manage.py runserver
