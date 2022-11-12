@@ -10,8 +10,8 @@ class UserModel(models.Model):
 
 class ProductModel(models.Model):
     pName = models.CharField(max_length = 255)
-    pPrice = models.DecimalField(max_digits = 10, decimal_places = 2)
-    pQuantity = models.DecimalField(max_digits = 3, decimal_places = 0)
+    pPrice = models.CharField(max_length = 10)
+    pQuantity = models.CharField(max_length = 5)
     pDesc = models.TextField()
     pDateCreated = models.DateTimeField(auto_now_add = True)
 

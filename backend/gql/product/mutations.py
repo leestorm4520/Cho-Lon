@@ -9,12 +9,14 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'pName',
-            'pPrice'
+            'pPrice',
+            'pQuantity',
             'pDesc',
         )
 class ProductInputType(InputObjectType):
     pName = String()
-    pPrice = Int()
+    pPrice = String()
+    pQuantity = String()
     pDesc = String()
 
 class ProductCreate(Mutation):
@@ -22,6 +24,7 @@ class ProductCreate(Mutation):
         input = ProductInputType(required = True)
     product = Field(ProductType)
 
+    @classmethod
     def mutate(cls, root, info, **data):
         serializer = ProductSerializer(data = data.get('input'))
         serializer.is_valid(raise_exception = True)
@@ -33,7 +36,7 @@ class ProductDelete(Mutation):
         id = ID(required = True)
 
     ok = Boolean()
-
+    @classmethod
     def mutate(cls, root, info, **data):
         product = ProductModel.objects.get(id = data.get('id'))
         product.delete()

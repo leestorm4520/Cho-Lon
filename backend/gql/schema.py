@@ -4,8 +4,8 @@ from .types import UserType, ProductType
 from ChoLon.models import UserModel, ProductModel
 from .product.mutations import ProductCreate, ProductDelete
 from .product.filters import ProductFilter
-from .user.mutations import UserCreate, UserDelete
-from .user.filters import UserFillter
+from .user.mutations import UserCreate
+from .user.filters import UserFilter
 
 class Query(ObjectType):
     user = Field(UserType, id = Argument(ID, required = True))
@@ -26,7 +26,6 @@ class Mutation(ObjectType):
     product_create = ProductCreate.Field()
     product_delete = ProductDelete.Field()
     user_create = UserCreate.Field()
-    user_delete = UserDelete.Field()
 
 
 schema = Schema(query = Query, mutation = Mutation)
