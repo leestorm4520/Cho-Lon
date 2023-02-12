@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'storages',
     'django_filters',
 
-    'products.apps.ProductsConfig'
+    'product.apps.ProductsConfig'
 ]
 
 MIDDLEWARE = [
