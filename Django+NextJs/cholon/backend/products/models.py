@@ -14,16 +14,16 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
     unitPrice = models.DecimalField(max_digits=5, decimal_places=2)
     quantityPerUnit = models.IntegerField()
-    unitWeight = models.DecimalField()
-    discount = models.DecimalField()
-    color = models.CharField(max_length=50)
-    image = models.CharField(max_length=150)
-    rating = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    unitWeight = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)
+    discount = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
+    color = models.CharField(max_length=50, blank=True)
+    image = models.CharField(max_length=150, blank=True)
+    rating = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
     countInStock = models.IntegerField(null=True, blank=True, default=0)
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True) # seller
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True, blank=True) # seller
 
     class Meta:
         permissions = [
